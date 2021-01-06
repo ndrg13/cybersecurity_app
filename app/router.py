@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from app.db_driver import DBDriver
 
 app = Flask(__name__)
-db_driver = DBDriver('db.sql.db')
+db_driver = DBDriver('../db.sql.db')
 
 
 @app.route('/')
