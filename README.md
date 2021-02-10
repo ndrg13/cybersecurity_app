@@ -4,11 +4,41 @@ Après authentification, il est possible à l'utilisateur de créer son propre d
 
 Commande Docker pour lancer le projet : ./start.sh
 
-Objectifs de sécurité de l'application : Evaluer l'impact d'une vulnérabilité sur C, I, D ou T.
+Objectifs de sécurité de l'application : 
+
+    -   Confidentialité : 1/5
+      
+        Les données stockées en base ne sont pas sensibles. Un piratage d'un compte utilisateur ou de la base de donnée
+        ne serait pas dangereux pour les personnes ou pour l'entreprise
+        
+        
+        
+    -   Intégrité : 3/5
+    
+        Si la base de données est altéré, cela peut poser un problème d'importance moyenne. En effet, si un utilisateur
+        perd ses cartes au profit d'un autre utilisateur, ou s'il se retrouve avec des cartes de valeur moindre que celles
+        qu'il possèdait avant, cela fausse le jeu. Il y a donc une nécessité d'assurer l'intégrité des données.
+      
+      
+      
+    -   Disponibilité : 1/5
+    
+        Si l'application est indisponible suite à une attaque de type DDoS par exemple, l'impact auprès des utilisateurs
+        est faible car il s'agit avant tout d'une application permettant de jouer à un jeu de carte virtuel. 
+        
+        
+        
+    -   Traçabilité : 2/5 
+    
+        La traçabilité est relativement importante, car il faut assurer un suivi des échanges de cartes entre les 
+        utilisateurs, au cas où un problème surviendrait.
+        
+        
 
 La surface d'attaque représentée par un graph MermaidJS se trouve dans le fichier mermaid_js.jpg à la racine de l'application.
 
-Excel
+Les types attaques et les solutions contre ces attaques se trouvent dans le fichier excel Attaques_et_solutions.xlsx à 
+la racine de l'application
 
 Concernant la sécurité, l'objectif est de protéger ce projet vulnérable contre au moins 3 des 10 principales attaques web 
 définies par l'OWASP :

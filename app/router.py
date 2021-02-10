@@ -93,7 +93,6 @@ def sign_in():
 
 
 """ (A-1) """
-@cross_origin()
 @app.route('/auth', methods=['POST'])
 def auth():
     ret = None
