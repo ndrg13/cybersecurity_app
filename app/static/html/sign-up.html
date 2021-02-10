@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <div class="row m-3">
         <div class="col">
-            <form method="post" action="/auth">
+            <form action="/registration" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp">
@@ -24,7 +24,7 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <button type="submit" id="signInButton" class="btn btn-primary">OK</button>
+                <button type="submit" class="btn btn-primary">OK</button>
                 <a href="/">
                     <button type="button" class="btn btn-outline-secondary">Cancel</button>
                 </a>
@@ -37,6 +37,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
-<script src="../js/eventListener.js"></script>
+
 </body>
 </html>

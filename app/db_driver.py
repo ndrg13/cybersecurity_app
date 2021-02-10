@@ -2,28 +2,38 @@ import sqlite3
 
 
 class DBDriver:
-    filename = None
 
     def __init__(self, filename):
         self.filename = filename
 
-    def connect(self):
-        return sqlite3.connect(self.filename)
+        try:
+            self.connex = sqlite3.connect(self.filename, check_same_thread=False)
+        except Exception as e:
+            print(e)
 
+
+    """ (B-1) + (B-2) """
     def get_user(self, username):
-        connex = self.connect()
-        cursor = connex.cursor()
-        data = cursor.execute("""SELECT username, password FROM userCredential WHERE username = ?""", (username,))
+        cursor = self.connex.cursor()
+        query = """SELECT username, password FROM userCredential WHERE username = ?"""
+        query_parameter = (username,)
+        data = cursor.execute(query, query_parameter)
 
         return data.fetchone()
 
+
+    """ (B-1) + (B-2) """
     def add_user(self, username, password):
-        connex = self.connect()
-        cursor = connex.cursor()
-        data = cursor.execute("""INSERT INTO userCredential(username, password) VALUES (?, ?)""", (username, password))
-        connex.commit()
+        cursor = self.connex.cursor()
+        query = """INSERT INTO userCredential(username, password) VALUES (?, ?)"""
+        query2 = """INSERT INTO userDeck(username) VALUES (?)"""
+        query_parameters = (username, password)
+        query2_parameters = (username,)
+        data = cursor.execute(query, query_parameters)
+        data2 = cursor.execute(query2, query2_parameters)
+        self.connex.commit()
 
-        return data
+        return data, data2
 
-
-
+    def get_card(self, ):
+        return None
