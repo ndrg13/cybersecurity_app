@@ -6,23 +6,12 @@ Commande Docker pour lancer le projet : ./start.sh
 
 Objectifs de sécurité de l'application : Evaluer l'impact d'une vulnérabilité sur C, I, D ou T.
 
-MermaidJS
+La surface d'attaque représentée par un graph MermaidJS se trouve dans le fichier mermaid_js.jpg à la racine de l'application.
 
 Excel
 
 Concernant la sécurité, l'objectif est de protéger ce projet vulnérable contre au moins 3 des 10 principales attaques web 
 définies par l'OWASP :
-
-    De quoi la fonctionnalité protège le code ?
-    
-    Comment la fonctionnalité protège le code ?
-    
-    Principes et mécanismes de sécurité ?
-    
-    Décrire les tests pour vérifier la non vulnérabilité ?
-    
-    Impact sur le business ?
-    
 
     -   Le cross-site scripting (XSS) :
     
