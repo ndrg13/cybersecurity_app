@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, make_response
-from flask_cors import CORS, cross_origin
+from flask import Flask, render_template, request, make_response, jsonify, redirect, url_for
+from flask_cors import CORS
 from app.db_driver import DBDriver
 import bcrypt
 import os
@@ -7,7 +7,9 @@ import os
 app = Flask(__name__, static_url_path='')
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-db_driver = DBDriver('db.sql.db')
+dir_path = os.path.dirname(os.path.abspath(__file__))[0:-4]
+sqlite_db_path = os.path.join(dir_path, 'db.sql.db')
+db_driver = DBDriver(sqlite_db_path)
 
 
 """ (A-1) """
@@ -24,25 +26,13 @@ def index():
 
 """ (A-1) """
 """ (C-1) """
-@app.route('/user-dashboard')
+@app.route('/user/dashboard')
 def user_dashboard():
-    # return app.send_static_file('html/index.html')
+    # return app.send_static_file('html/user-dashboard.html')
 
     """ On test la présence d'un cookie d'identification pour accéder au dashboard utilisateur ; si le cookie n'est
     pas présent, on redirige l'utilisateur vers la page d'index """
     return render_template('user-dashboard.html') if 'flask-auth-cookie' in request.cookies \
-        else render_template('index.html')
-
-
-""" (A-1) """
-""" (C-1) """
-@app.route('/<all_inputs>')
-def redirection(all_inputs):
-    # return app.send_static_file(allInputs)
-
-    """ On test la présence d'un cookie d'identification pour accéder à n'importe quelle page du site ; si le cookie
-    n'est pas présent, on redirige l'utilisateur vers la page d'index """
-    return render_template(all_inputs) if 'flask-auth-cookie' in request.cookies \
         else render_template('index.html')
 
 
@@ -57,8 +47,6 @@ def sign_up():
 """ (A-1) """
 @app.route('/registration', methods=['POST'])
 def registration():
-    ret = None
-
     """ On vérifie que le nom d'utilisateur que l'on souhaite utiliser n'existe pas déjà """
     username_test = db_driver.get_user(request.form['username'])
 
@@ -95,8 +83,6 @@ def sign_in():
 """ (A-1) """
 @app.route('/auth', methods=['POST'])
 def auth():
-    ret = None
-
     """ On va récupérer le mot de passe associé au nom d'utilisateur """
     credentials = db_driver.get_user(request.form['username'])
 
@@ -116,3 +102,17 @@ def auth():
         ret = render_template('fail.html')
 
     return ret
+
+
+@app.route('/get-card-by-id')
+def get_card_by_id():
+    card = db_driver.get_card_by_id(request.args['cardId'])
+
+    return jsonify(card) if card else "Card not found for this ID"
+
+
+@app.route('/get-card-by-name')
+def get_card_by_name():
+    card = db_driver.get_card_by_name(request.args['cardName'])
+
+    return jsonify(card) if card else "Card not found for this name"

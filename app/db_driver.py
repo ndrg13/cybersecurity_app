@@ -35,5 +35,22 @@ class DBDriver:
 
         return data, data2
 
-    def get_card(self, ):
-        return None
+
+    """ (B-1) + (B-2) """
+    def get_card_by_id(self, card_id):
+        cursor = self.connex.cursor()
+        query = """SELECT * FROM card WHERE card_id = ?"""
+        query_parameters = (card_id,)
+        data = cursor.execute(query, query_parameters)
+
+        return data.fetchone()
+
+
+    """ (B-1) + (B-2) """
+    def get_card_by_name(self, card_name):
+        cursor = self.connex.cursor()
+        query = """SELECT * FROM card WHERE Name = ?"""
+        query_parameters = (card_name,)
+        data = cursor.execute(query, query_parameters)
+
+        return data.fetchone()

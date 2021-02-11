@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<br lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User dashboard</title>
 </head>
-<body>
+<br>
 User dashboard
+</br>
+</br>
+</br>
+<form method="get" action="/get-card-by-id">
+    <div class="mb-3">
+        <label for="cardId" class="form-label">Get card by ID</label>
+        <input type="text" id="cardId" class="form-control" id="cardId" name="cardId" aria-describedby="cardIdHelp">
+        <button type="submit" id="searchIdButton" class="btn btn-primary">OK</button>
+    </div>
+</form>
+</br>
+</br>
+<form method="get" action="/get-card-by-name">
+    <div class="mb-3">
+        <label for="cardName" class="form-label">Get card by name</label>
+        <input type="text" class="form-control" id="cardName" name="cardName">
+        <button type="submit" id="searchNameButton" class="btn btn-primary">OK</button>
+    </div>
+</form>
+</body>
 </body>
 </html>

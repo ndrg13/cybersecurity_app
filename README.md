@@ -1,8 +1,25 @@
+Construire et lancer le projet : ./start.sh
+
+Lien vers l'application : https://127.0.0.1:5555/
+    
 Le projet est une application sous forme d'API permettant d'accéder à une base de données de cartes Yu-Gi-Oh! 
+
+Une liste des cartes est disponible à cette adresse : https://pastebin.com/Ee4D5Rcg
 
 Après authentification, il est possible à l'utilisateur de créer son propre deck de cartes et de le stocker en base de données.
 
-Commande Docker pour lancer le projet : ./start.sh
+Pour se décoonecter, il suffit de supprimer le cookie de session flask-auth-cookie via la console de navigateur.
+
+
+
+Utilisateurs : 
+
+    -   username : add1 / password : add1
+    -   username : add2 / password : add2
+
+Il est possible de créer de nouveaux utilisateurs.
+
+
 
 Objectifs de sécurité de l'application : 
 
